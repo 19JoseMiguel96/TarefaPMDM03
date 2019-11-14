@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.apptiendavirtual">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Tienda virtual"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ActividadVerCompras"
+            android:label="Compras realizadas"
+            android:parentActivityName=".ActividadCliente">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity android:name=".ActividadVerPedidos"
+            android:label="Pedidos en trámite"
+            android:parentActivityName=".ActividadCliente">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity
+            android:name=".ActividadDireccion"
+            android:label="Dirección pedido"
+            android:parentActivityName=".ActividadCliente">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity
+            android:name=".ActividadHacerPedidos"
+            android:label="Pedidos"
+            android:parentActivityName=".ActividadCliente">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity
+            android:name=".ActividadAdministrador"
+            android:label="Administrador"
+            android:parentActivityName=".TiendaVirtualPrincipal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity
+            android:name=".ActividadCliente"
+            android:label="Cliente"
+            android:parentActivityName=".TiendaVirtualPrincipal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TiendaVirtualPrincipal" />
+        </activity>
+        <activity
+            android:name=".TiendaVirtualPrincipal"
+            android:label="Login Tienda Virtual">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
