@@ -15,8 +15,7 @@ import com.example.apptiendavirtual.BaseDeDatos.BaseDatos_pmdm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadVerCompras extends AppCompatActivity {
-    private BaseDatos_pmdm baseDatos;
+public class ActividadPedidosConfirmados extends AppCompatActivity {private BaseDatos_pmdm baseDatos;
     private SQLiteDatabase operacionesBD;
     String direccion;
     String ciudad;
@@ -30,17 +29,15 @@ public class ActividadVerCompras extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actividad_ver_compras);
+        setContentView(R.layout.actividad_pedidos_confirmados);
 
         if (baseDatos==null){
             baseDatos = new BaseDatos_pmdm(getApplicationContext());
             operacionesBD = baseDatos.getWritableDatabase();
             baseDatos.asigarSQLiteDatabase(operacionesBD);
         }
-        Cursor cursor = operacionesBD.rawQuery("select c.direccion, c.ciudad, c.cp," +
-                " c.categoria, c.producto, c.cantidad," +
-                "  c._id, c.idCliente, n.indice from Confirmados c, NombreLogin n " +
-                "where n.indice = c.idCliente ", null);
+        Cursor cursor = operacionesBD.rawQuery("select direccion, ciudad, cp," +
+                " categoria, producto, cantidad from Confirmados", null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 direccion =cursor.getString(0);

@@ -15,7 +15,7 @@ import com.example.apptiendavirtual.BaseDeDatos.BaseDatos_pmdm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadVerCompras extends AppCompatActivity {
+public class ActividadVerPedidosRechazados extends AppCompatActivity {
     private BaseDatos_pmdm baseDatos;
     private SQLiteDatabase operacionesBD;
     String direccion;
@@ -24,23 +24,21 @@ public class ActividadVerCompras extends AppCompatActivity {
     String categoria;
     String producto;
     int cantidad;
-
+    int indice;
     List<DatosVerPedidos> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actividad_ver_compras);
+        setContentView(R.layout.actividad_ver_pedidos_rechazados);
 
         if (baseDatos==null){
             baseDatos = new BaseDatos_pmdm(getApplicationContext());
             operacionesBD = baseDatos.getWritableDatabase();
             baseDatos.asigarSQLiteDatabase(operacionesBD);
         }
-        Cursor cursor = operacionesBD.rawQuery("select c.direccion, c.ciudad, c.cp," +
-                " c.categoria, c.producto, c.cantidad," +
-                "  c._id, c.idCliente, n.indice from Confirmados c, NombreLogin n " +
-                "where n.indice = c.idCliente ", null);
+        Cursor cursor = operacionesBD.rawQuery("select direccion, ciudad, cp," +
+                " categoria, producto, cantidad from Rechazados", null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 direccion =cursor.getString(0);
@@ -49,8 +47,7 @@ public class ActividadVerCompras extends AppCompatActivity {
                 categoria =cursor.getString(3);
                 producto =cursor.getString(4);
                 cantidad =cursor.getInt(5);
-                items.add(new DatosVerPedidos(categoria+", "+producto+", "+cantidad+ "(cant.)" ,
-                        direccion+", "+ciudad+", "+cp, null));
+                items.add(new DatosVerPedidos(categoria+", "+producto+", "+cantidad+ "(cant.)" ,direccion+", "+ciudad+", "+cp, null));
                 cursor.moveToNext();
             }
         }
